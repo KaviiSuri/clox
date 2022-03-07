@@ -10,17 +10,17 @@ OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 INC_DIRS := include
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-LIBRARIES	:= -lSDL2 -lGLEW -lGL
+LIBRARIES	:=
 
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -fPIC -Llib
 
 
-SOFOLDER := solib
-SOLIB := hazel.so
+#SOFOLDER := solib
+#SOLIB := hazel.so
 
-$(SOFOLDER)/$(SOLIB): $(OBJS)
-	$(MKDIR_P) $(dir $@)
-	$(CC) -shared $(OBJS) -o $@
+#$(SOFOLDER)/$(SOLIB): $(OBJS)
+	#$(MKDIR_P) $(dir $@)
+	#$(CC) -shared $(OBJS) -o $@
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LDFLAGS) $(LIBRARIES)
