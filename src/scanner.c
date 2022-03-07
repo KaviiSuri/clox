@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "common.h"
 #include "scanner.h"
@@ -168,6 +169,8 @@ Token number(){
 Token scanToken() {
     skipWhitespace();
     scanner.start = scanner.current;
+    
+    if(isAtEnd()) return makeToken(TOKEN_EOF);
 
     char c = advance();
 
@@ -202,6 +205,5 @@ Token scanToken() {
     }
 
     if(isAtEnd()) return makeToken(TOKEN_EOF);
-
-    return errorToken("Unexpected Character.");
+    return errorToken("Unexpected Character");
 }
